@@ -222,4 +222,3 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
     </intent-filter>
     </activity>
 ```
-### 四、总结
