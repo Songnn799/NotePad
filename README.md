@@ -10,6 +10,8 @@
 ![扩展功能1-菜单](https://note.youdao.com/yws/api/personal/file/BD524799925A483A91627E34CAE6F9A4?method=download&shareKey=07ace68160209735743c23d93c3b4158)
 ![扩展功能1-字体颜色](https://note.youdao.com/yws/api/personal/file/3FB17FB2336B402C9AD509469674C146?method=download&shareKey=b33c4f0f21b910bb6a90435915783f9e)
 ![扩展功能1-字体大小](https://note.youdao.com/yws/api/personal/file/4A335CC6545B46EA8AF04B59B26BAEF5?method=download&shareKey=f45c54b3c1e06c28ebd2f964e8933adc)
+#####  4.扩展功能2：修改背景颜色
+![扩展功能2-修改背景](https://note.youdao.com/yws/api/personal/file/C50347BCAE474FCE9839A17F3DE5977F?method=download&shareKey=92168fd3d7d4d8074cb5f49b5c09b78f)
 ### 二、基础功能：“时间戳”功能
 ##### 1.修改样式：打开note_list.xml，在原来的TextView下方新增一个用来显示日期的TextView：
 ```xml
@@ -226,7 +228,7 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
     </intent-filter>
     </activity>
 ```
-### 四、修改笔记中字体的大小及颜色
+### 四、扩展功能一：修改笔记中字体的大小及颜色
 ##### 1.将字体大小和字体颜色选项添加到菜单里(在editor_options_menu.xml中添加如下代码）
 ```xml
 <item
@@ -314,4 +316,8 @@ case R.id.black_font:
 + NotePad.Notes.COLUMN_NAME_TEXT_COLOR + "INTEGER"
 + NotePad.Notes.COLUMN_NAME_TEXT_SIZE + "INTEGER" 
 ```
-
+### 五、扩展功能二：修改背景
+##### 在notelist_items中添加语句：
+```xml
+android:background="@drawable/beijing"
+```
