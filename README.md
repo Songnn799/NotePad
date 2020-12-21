@@ -6,6 +6,10 @@
 ![搜索](https://note.youdao.com/yws/api/personal/file/0B418ACD575A4944BA995242F1E8BD1E?method=download&shareKey=a61bdf7406a74df90075b5e48a684a42)
 #####  3.在输入内容时，会匹配可能的搜索结果，点击相关条目就能进入编辑界面。
 ![匹配搜索结果](https://note.youdao.com/yws/api/personal/file/62A4C480259C4130BB2A11C41C23F787?method=download&shareKey=63853ee434a2861290a8f88efa43728f)
+#####  4.扩展功能1：在撰写笔记时，可修改笔记字体的大小及颜色
+![扩展功能1-菜单](https://note.youdao.com/yws/api/personal/file/BD524799925A483A91627E34CAE6F9A4?method=download&shareKey=07ace68160209735743c23d93c3b4158)
+![扩展功能1-字体颜色](https://note.youdao.com/yws/api/personal/file/3FB17FB2336B402C9AD509469674C146?method=download&shareKey=b33c4f0f21b910bb6a90435915783f9e)
+![扩展功能1-字体大小](https://note.youdao.com/yws/api/personal/file/4A335CC6545B46EA8AF04B59B26BAEF5?method=download&shareKey=f45c54b3c1e06c28ebd2f964e8933adc)
 ### 二、基础功能：“时间戳”功能
 ##### 1.修改样式：打开note_list.xml，在原来的TextView下方新增一个用来显示日期的TextView：
 ```xml
@@ -222,3 +226,92 @@ public class NoteSearch extends Activity implements SearchView.OnQueryTextListen
     </intent-filter>
     </activity>
 ```
+### 四、修改笔记中字体的大小及颜色
+##### 1.将字体大小和字体颜色选项添加到菜单里(在editor_options_menu.xml中添加如下代码）
+```xml
+<item
+    android:id="@+id/font_size"
+    android:title="Font Size">
+    <menu>
+        <group>
+            <item
+                android:id="@+id/font_10"
+                android:title="font10"/>
+            <item
+                android:id="@+id/font_16"
+                android:title="font16" />
+            <item
+                android:id="@+id/font_20"
+                android:title="font20" />
+        </group>
+    </menu>
+</item>
+
+<item
+    android:title="Font Color"
+    android:id="@+id/font_color">
+    <menu>
+        <group>
+            <item
+                android:title="red"
+                android:id="@+id/red_font"/>
+            <item
+                android:title="blue"
+                android:id="@+id/blue_font"/>
+            <item
+                android:title="black"
+                android:id="@+id/black_font"/>
+        </group>
+    </menu>
+</item>
+```
+##### 2.在NoteEditor的onOptionsItemSelected中添加相应的case来选择相应事件
+```java
+case R.id.font_10:
+    mText.setTextSize(20);
+    Toast toast =Toast.makeText(NoteEditor.this,"修改成功", Toast.LENGTH_SHORT);
+    toast.show();
+    finish();
+    break;
+case R.id.font_16:
+    mText.setTextSize(32);
+    Toast toast2 =Toast.makeText(NoteEditor.this,"修改成功",Toast.LENGTH_SHORT);
+    toast2.show();
+    finish();
+    break;
+case R.id.font_20:
+    mText.setTextSize(40);
+    Toast toast3 =Toast.makeText(NoteEditor.this,"修改成功",Toast.LENGTH_SHORT);
+    toast3.show();
+    finish();
+    break;
+case R.id.red_font:
+    mText.setTextColor(Color.RED);
+    Toast toast4 =Toast.makeText(NoteEditor.this,"修改成功",Toast.LENGTH_SHORT);
+    toast4.show();
+    finish();
+    break;
+case R.id.blue_font:
+    mText.setTextColor(Color.BLUE);
+    Toast toast5 =Toast.makeText(NoteEditor.this,"修改成功",Toast.LENGTH_SHORT);
+    toast5.show();
+    finish();
+    break;
+case R.id.black_font:
+    mText.setTextColor(Color.BLACK);
+    Toast toast6 =Toast.makeText(NoteEditor.this,"修改成功",Toast.LENGTH_SHORT);
+    toast6.show();
+    finish();
+    break;
+```
+##### 3.在NotePad类中添加颜色大小属性定义
+```java
+ public static final String COLUMN_NAME_TEXT_COLOR = "font_size";
+ public static final String COLUMN_NAME_TEXT_SIZE = "font_color";
+```
+##### 4.在NotePadProvider的onCreate方法中加入相应的参数来保存字体大小和颜色的信息
+```java
++ NotePad.Notes.COLUMN_NAME_TEXT_COLOR + "INTEGER"
++ NotePad.Notes.COLUMN_NAME_TEXT_SIZE + "INTEGER" 
+```
+
